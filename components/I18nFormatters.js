@@ -8,7 +8,7 @@ export const getI18nLink = linkProps => chunks =>
   <StyledLink {...linkProps}>{linkProps?.children || chunks}</StyledLink>;
 export const I18nBold = chunks => <strong>{chunks}</strong>;
 export const I18nItalic = chunks => <i>{chunks}</i>;
-export const I18nUnderline = chunks => <u textDecoration="underline">{chunks}</u>;
+export const I18nUnderline = chunks => <u>{chunks}</u>;
 export const I18nSupportLink = chunks => (
   <StyledLink href="mailto:support@opencollective.com">
     {chunks.length ? chunks : 'support@opencollective.com'}
