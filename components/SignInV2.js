@@ -53,7 +53,7 @@ export default class SignInV2 extends React.Component {
     }
   }
 
-  renderSecondaryAction(message) {
+  renderSecondaryAction(message, style) {
     const { loading, onSecondaryAction } = this.props;
     return typeof onSecondaryAction === 'string' ? (
       <StyledLink
@@ -62,6 +62,7 @@ export default class SignInV2 extends React.Component {
         disabled={loading}
         fontSize="14px"
         data-cy="signin-secondary-action-btn"
+        {...style}
       >
         {message}
       </StyledLink>
@@ -92,7 +93,15 @@ export default class SignInV2 extends React.Component {
               width={128}
             />
           </Flex>
-          <Flex as="label" fontWeight={700} htmlFor="email" fontSize="32px" mb={12} mt="48px" justifyContent="center">
+          <Flex
+            as="label"
+            fontWeight={700}
+            htmlFor="email"
+            fontSize={['24px', '32px']}
+            mb={12}
+            mt="48px"
+            justifyContent="center"
+          >
             {label || <FormattedMessage defaultMessage="Continue with your email" />}
           </Flex>
           <Flex fontWeight={400} fontSize="16px" color="black.700" mb="50px" justifyContent="center">
@@ -195,25 +204,27 @@ export default class SignInV2 extends React.Component {
               />{' '}
               <Box mt="24px">
                 <Span mr="40px">
-                  {this.renderSecondaryAction(<FormattedMessage defaultMessage="Yes, sign me up!" />)}
+                  {this.renderSecondaryAction(<FormattedMessage defaultMessage="Yes, sign me up!" />, {
+                    textDecoration: 'underline',
+                  })}
                 </Span>
-                <StyledLink onClick={() => this.setState({ unknownEmail: false })}>
+                <StyledLink onClick={() => this.setState({ unknownEmail: false })} textDecoration="underline">
                   <FormattedMessage defaultMessage="No, use a different email" />
                 </StyledLink>
               </Box>
             </Container>
           )}
         </Box>
-        <Container mt="128px" pl={['20px', '20px', '144px']} pr={['20px', '20px', '144px']} width={1}>
+        <Container mt="128px" pl={['20px', '20px', '144px']} pr={['20px', '20px', '144px']} maxWidth="880px" width={1}>
           <StyledHr borderStyle="solid" borderColor="black.200" mb="16px" />
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" flexDirection={['column', 'row']} alignItems="center">
             <Span>
-              <SignInFooterLink href="/privacypolicy">
+              <SignInFooterLink href="/privacypolicy" textDecoration="underline">
                 <FormattedMessage defaultMessage="Read our privacy policy" />
               </SignInFooterLink>
             </Span>
-            <Span>
-              <SignInFooterLink href="/contact">
+            <Span mt={['32px', 0]}>
+              <SignInFooterLink href="/contact" textDecoration="underline">
                 <FormattedMessage defaultMessage="Contact support" />
               </SignInFooterLink>
             </Span>
